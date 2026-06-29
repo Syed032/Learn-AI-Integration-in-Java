@@ -1,0 +1,17 @@
+package com.rahman.rag;
+
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DataLoader {
+
+    private final SimpleVectorStore vectorStore;
+
+    public DataLoader(
+            SimpleVectorStore vectorStore) {
+
+        this.vectorStore = vectorStore;
+    }
+}

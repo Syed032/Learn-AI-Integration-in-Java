@@ -1,0 +1,16 @@
+spring.servlet.multipart.max-file-size=50MB
+spring.servlet.multipart.max-request-size=50MB
+spring.application.name=SpringAI-Demo
+
+spring.ai.openai.api-key=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
+
+spring.ai.openai.base-url=https://openrouter.ai/api
+
+spring.ai.openai.chat.options.model=openai/gpt-oss-20b:free
+
+spring.ai.vectorstore.chroma.client.host=http://localhost
+spring.ai.vectorstore.chroma.client.port=8001
+
+spring.ai.vectorstore.chroma.initialize-schema=true
+#spring.ai.vectorstore.chroma.collection-name=rag-documents
+spring.ai.vectorstore.chroma.collection-name=default

@@ -1,0 +1,41 @@
+package com.rahman.service;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AIService {
+
+    private final ChatClient chatClient;
+    private final QuestionAnswerAdvisor questionAnswerAdvisor;
+
+    public AIService(ChatClient chatClient,
+                     VectorStore vectorStore) {
+
+        this.chatClient = chatClient;
+
+        this.questionAnswerAdvisor =
+                QuestionAnswerAdvisor.builder(vectorStore)
+                        .searchRequest(
+                                SearchRequest.builder()
+                                        .topK(4)
+                                        .build())
+                        .build();
+    }
+    
+    public String askAI(String conversationId, String message) {
+
+        return chatClient.prompt()
+                .user(message)
+                .advisors(a -> a.param(
+                        ChatMemory.CONVERSATION_ID,
+                        conversationId))
+                .advisors(questionAnswerAdvisor)
+                .call()
+                .content();
+    }
+}

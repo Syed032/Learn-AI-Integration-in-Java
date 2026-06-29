@@ -1,0 +1,45 @@
+package com.rahman.service;
+
+import java.util.List;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AIService {
+
+    private final ChatClient chatClient;
+    private final SimpleVectorStore vectorStore;
+
+    public AIService(
+            ChatClient chatClient,
+            SimpleVectorStore vectorStore) {
+
+        this.chatClient = chatClient;
+        this.vectorStore = vectorStore;
+    }
+
+    public String askAI(
+            String conversationId,
+            String message) {
+
+        List<Document> documents =
+                vectorStore.similaritySearch(message);
+
+        System.out.println("Retrieved Documents:");
+
+        documents.forEach(doc ->
+                System.out.println(doc.getText()));
+
+        return chatClient.prompt()
+                .user(message)
+                .advisors(a -> a.param(
+                        ChatMemory.CONVERSATION_ID,
+                        conversationId))
+                .call()
+                .content();
+    }
+}

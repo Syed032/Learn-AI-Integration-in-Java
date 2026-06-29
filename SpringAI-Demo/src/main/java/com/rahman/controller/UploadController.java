@@ -1,0 +1,30 @@
+package com.rahman.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import com.rahman.service.PdfUploadService;
+
+@RestController
+@RequestMapping("/ai")
+@CrossOrigin(origins = "http://localhost:5173")
+public class UploadController {
+
+    private final PdfUploadService pdfUploadService;
+
+    public UploadController(PdfUploadService pdfUploadService) {
+        this.pdfUploadService = pdfUploadService;
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadPdf(
+            @RequestParam("file") MultipartFile file)
+            throws IOException {
+
+        pdfUploadService.uploadPdf(file);
+
+        return ResponseEntity.ok(
+                "PDF uploaded successfully");
+    }
+}

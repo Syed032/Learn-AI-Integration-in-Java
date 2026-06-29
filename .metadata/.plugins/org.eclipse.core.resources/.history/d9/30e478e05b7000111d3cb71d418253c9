@@ -1,0 +1,32 @@
+spring.servlet.multipart.max-file-size=50MB
+spring.servlet.multipart.max-request-size=50MB
+
+spring.application.name=SpringAI-Demo
+
+# =========================
+# OpenRouter Configuration
+# =========================
+
+spring.ai.openai.base-url=https://openrouter.ai/api
+
+# Chat Model
+spring.ai.openai.chat.options.model=openai/gpt-oss-20b:free
+
+# Embedding Model
+spring.ai.openai.embedding.options.model=text-embedding-3-small
+
+# =========================
+# ChromaDB Configuration
+# =========================
+spring.ai.vectorstore.chroma.client.host=http://localhost
+spring.ai.vectorstore.chroma.client.port=8001
+
+spring.ai.vectorstore.chroma.tenant-name=default_tenant
+spring.ai.vectorstore.chroma.database-name=default_database
+spring.ai.vectorstore.chroma.collection-name=default
+
+# =========================
+# Debug Logs
+# =========================
+logging.level.org.springframework.ai=DEBUG
+logging.level.org.springframework.web.client=DEBUG

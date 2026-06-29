@@ -1,0 +1,182 @@
+Good morning 😄
+
+Yes, I remember exactly where we paused.
+
+What We Have Completed So Far
+Phase 1: Traditional AI Integration (Completed ✅)
+
+You built a Spring Boot project where:
+
+Controller receives request from Bruno
+Service calls OpenRouter API
+Used WebClient
+Passed API Key
+Sent prompt to LLM
+Received response
+Parsed JSON using Jackson
+Added Logging (SLF4J)
+Added Exception Handling
+Refactored code into Controller → Service structure
+Concepts Covered
+Spring Boot
+@SpringBootApplication
+@RestController
+@Service
+@RequestMapping
+@GetMapping
+@PostMapping
+@RequestBody
+Dependency Injection
+IoC Container
+Bean Creation
+Singleton Scope
+Constructor Injection
+API Integration
+REST APIs
+HTTP Request / Response
+JSON
+API Keys
+WebClient
+AI Concepts
+LLM
+Prompt
+Completion
+OpenRouter
+AI Request Flow
+Phase 2: Spring AI (Current Position)
+
+We created a new project:
+
+SpringAI-Demo
+
+Project Structure:
+
+SpringAI-Demo
+|
+|-- controller
+|-- service
+|-- config
+|-- dto
+
+Then:
+
+✅ Added Spring AI dependency
+
+✅ Fixed version conflicts
+
+✅ Spring Boot application started successfully
+
+✅ Created:
+
+AIController
+AIService
+AIConfig
+ChatRequest
+
+At this point we paused.
+
+Current Status
+
+You are exactly here:
+
+Traditional WebClient Approach  ---> Learned
+Spring AI Setup                 ---> Learned
+Spring AI Project Running       ---> Done
+
+NEXT:
+ChatClient
+What Is Still Pending
+Spring AI
+ChatClient
+Prompt Engineering
+System Prompt
+PromptTemplate
+Chat Memory
+Conversation History
+RAG (Most Important)
+
+This is where real AI projects start.
+
+Learn:
+
+Document
+Chunking
+Embedding
+Vector
+Similarity Search
+Retriever
+RAG Pipeline
+Vector Database
+
+Learn:
+
+ChromaDB
+PGVector
+Pinecone
+Weaviate
+
+Understand:
+
+Question
+   ↓
+Embedding
+   ↓
+Vector Search
+   ↓
+Relevant Data
+   ↓
+LLM
+   ↓
+Answer
+AI Chatbot Project
+
+Build:
+
+User
+  ↓
+Spring Boot
+  ↓
+Spring AI
+  ↓
+RAG
+  ↓
+Vector DB
+  ↓
+OpenAI/OpenRouter
+Advanced Topics
+
+Later:
+
+Function Calling
+AI Agents
+Tool Calling
+MCP
+Multi-Agent Systems
+LangChain4j
+AI Observability
+Production Deployment
+If We Continue Today
+
+Today's plan should be:
+
+Session 1
+Understand ChatClient
+Implement ChatClient
+Session 2
+Prompt Templates
+Session 3
+System Prompts
+Session 4
+Chat Memory
+
+Then tomorrow:
+
+RAG
+↓
+Embeddings
+↓
+Vector Database
+↓
+AI Chatbot
+
+You have already completed about 35-40% of the overall Java + AI roadmap. The exciting part (RAG and Chatbots) starts now. 🚀

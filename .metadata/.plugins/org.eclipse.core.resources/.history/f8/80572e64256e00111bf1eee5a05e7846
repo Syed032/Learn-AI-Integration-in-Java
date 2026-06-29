@@ -1,0 +1,40 @@
+package com.rahman.rag;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+
+@Component
+public class DataLoader {
+
+    private final SimpleVectorStore vectorStore;
+
+    public DataLoader(SimpleVectorStore vectorStore) {
+        this.vectorStore = vectorStore;
+    }
+
+    @PostConstruct
+    public void loadData() throws IOException {
+
+        String content = Files.readString(
+                Paths.get("src/main/resources/knowledge.txt"));
+
+        Document document = new Document(content);
+
+        vectorStore.add(List.of(document));
+
+        System.out.println("Knowledge Loaded Successfully");
+    }
+    
+    var results = vectorStore.similaritySearch(
+            "What is my name?");
+
+    System.out.println(results);
+}

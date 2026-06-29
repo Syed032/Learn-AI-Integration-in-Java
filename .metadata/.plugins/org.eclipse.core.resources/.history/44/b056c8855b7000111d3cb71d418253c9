@@ -1,0 +1,12 @@
+package com.rahman.rag;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class DataLoader {
+
+    public DataLoader() {
+
+        System.out.println("DataLoader Disabled");
+    }
+}

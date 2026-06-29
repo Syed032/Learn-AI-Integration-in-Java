@@ -1,0 +1,70 @@
+package com.rahman.rag;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
+
+
+@Component
+public class DataLoader {
+
+	private final SimpleVectorStore vectorStore;
+
+	public DataLoader(SimpleVectorStore vectorStore) {
+		this.vectorStore = vectorStore;
+	}
+
+	@PostConstruct
+	public void loadData() throws IOException {
+
+	    List<Document> documents = Files.list(
+	            Paths.get("src/main/resources"))
+	            .filter(path -> path.toString().endsWith(".txt"))
+	            .map(path -> {
+	                try {
+	                    return new Document(
+	                            Files.readString(path));
+	                }
+	                catch (IOException e) {
+	                    throw new RuntimeException(e);
+	                }
+	            })
+	            .toList();
+
+	    TokenTextSplitter splitter =
+	            new TokenTextSplitter();
+
+	    List<Document> chunks =
+	            documents.stream()
+	                    .flatMap(document ->
+	                            splitter.split(document).stream())
+	                    .toList();
+
+	    System.out.println("Total Documents: "
+	            + documents.size());
+
+	    System.out.println("Total Chunks: "
+	            + chunks.size());
+
+	    vectorStore.add(chunks);
+
+	    System.out.println(
+	            "Knowledge Loaded Successfully");
+
+	    List<Document> results =
+	            vectorStore.similaritySearch(
+	                    "How many leaves do employees get?");
+
+	    System.out.println("Search Results:");
+	    System.out.println(results);
+	}
+}

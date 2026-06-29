@@ -1,0 +1,19 @@
+My name is Syed Abdul Rehman.
+
+I live in Bangalore.
+
+I am learning Spring AI.
+
+I am a Java Full Stack Developer.
+
+Spring AI supports ChatClient.
+
+Spring AI supports ChatMemory.
+
+VectorStore is used for similarity search.
+
+Embeddings convert text into vectors.
+
+RAG stands for Retrieval Augmented Generation.
+
+Chunking improves retrieval accuracy.

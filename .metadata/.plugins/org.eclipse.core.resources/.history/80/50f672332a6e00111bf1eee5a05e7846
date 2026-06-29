@@ -1,0 +1,30 @@
+package com.rahman.service;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.stereotype.Service;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+
+@Service
+public class AIService {
+
+    private final ChatClient chatClient;
+
+    public AIService(ChatClient chatClient) {
+        this.chatClient = chatClient;
+    }
+
+    public String askAI(
+            String conversationId,
+            String message) {
+
+        return chatClient.prompt()
+                .user(message)
+                .advisors(a -> a.param(
+                        ChatMemory.CONVERSATION_ID,
+                        conversationId))
+                .call()
+                .content();
+    }
+}

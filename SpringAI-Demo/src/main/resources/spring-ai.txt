@@ -1,0 +1,1 @@
+Spring AI provides ChatClient, ChatMemory and VectorStore.
